@@ -18,7 +18,10 @@ function fetchMovies() {
         localStorage.getItem("movies") == null ||
         localStorage.getItem("movies") == undefined
       ) {
+        let idMaker = 0;
+        localStorage.setItem('idGenerator',idMaker);
         console.log("Does not exist, Hahaha I got in ehehehhe");
+
         storeMoviesInStorage(data);
       } else {
         console.log(
@@ -65,7 +68,7 @@ function generateTable() {
         <button onclick=" movieSelectedEdit('${
           r.id
         }')" >Edit</button>
-        <button onclick="location.href='/editAdd.html'">Remove</button>
+        <button onclick="removeMovie('${r.id}')">Remove</button>
     </td>           
     </tr>`;
   }
@@ -150,6 +153,22 @@ function addMovie(){
 
   localStorage.setItem('addMovie',true);
   window.location = 'editAdd.html';
+  return false;
+
+
+}
+//RemoveMovie
+
+function removeMovie(id){
+
+  let films = JSON.parse(localStorage.getItem('movies'));
+  let index = findIndex(films,id);
+  
+  films.splice(index,1);
+  console.log(films);
+  localStorage.setItem('movies',JSON.stringify(films));
+  generateTable();
+  
   return false;
 
 

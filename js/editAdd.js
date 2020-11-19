@@ -133,6 +133,7 @@ function saveNewMovie() {
   console.log(titleN,directorN,producerN,releaseN,descriptionN);
 
   let obj = {
+      id: idGenerator(),
       title:titleN,
       director:directorN,
       producer:producerN,
@@ -146,5 +147,14 @@ function saveNewMovie() {
   localStorage.setItem('addMovie',false);
   return false;
 
+
+}
+function idGenerator(){
+
+    let idMaker = localStorage.getItem('idGenerator');
+    localStorage.setItem('idGenerator',++idMaker);
+    console.log(idMaker);
+    return idMaker;
+    
 
 }
