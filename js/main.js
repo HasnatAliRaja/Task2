@@ -170,6 +170,7 @@ function removeMovie(id){
   generateTable();
   
   return false;
+  //Oi
 
 
 }
