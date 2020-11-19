@@ -1,0 +1,80 @@
+body{
+    margin:0;
+    padding:0;
+    background-color: #1b1b32;
+    font-family:Lato,sans-serif;
+}
+.navBar{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    background-color: #0a0a23;
+    color: white;
+    justify-content: space-between;
+    height: auto;
+}
+
+.logo{
+    padding: 1em;
+}
+
+.navBarLinks {
+    margin-right: 3em;
+    padding: 1em;
+}
+.navBarLinks:hover{
+
+    color:black;
+    background-color: white;
+    cursor: pointer;
+
+}
+.navList{
+    display: flex;
+    list-style: none;
+    margin: 0;
+}
+.containerMain{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+#moviesTable{
+    padding:2em;
+    color:white;
+}
+td {
+    padding: 2em;
+}
+
+.headingH1{
+    color: white;
+    padding: 2em;
+
+}
+hr{
+    width: 100%;
+}
+table{
+    margin: 4em;
+}
+.idCol{
+    display: none;
+}
+.movie{
+    color:white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.movieList{
+    list-style: none;
+    padding: 2em;
+    margin: 0;
+    align-self: flex-start;
+
+}
+.plotDv{
+    padding:2em;
+}
