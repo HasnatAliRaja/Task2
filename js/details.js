@@ -1,28 +1,22 @@
-document.addEventListener("DOMContentLoaded", function(event) {
-    // - Code to execute when all DOM content is loaded. 
-    // - including fonts, images, etc.
-    showMovie();
+document.addEventListener("DOMContentLoaded", function (event) {
+  // - Code to execute when all DOM content is loaded.
+  // - including fonts, images, etc.
+  showMovie();
 });
 
+showMovie = () => {
+  let index = null;
+  films = JSON.parse(localStorage.getItem("movies"));
+  id = localStorage.getItem("detailsMovie");
 
-function showMovie() {
-    let index = null;
-    films = JSON.parse(localStorage.getItem("movies"));
-    id = localStorage.getItem("detailsMovie");
-  
-     for(let r of films) {
-      if (id == r.id) {
-        index = r.num;
-        console.log("found");
-      }
-    };
-  
-    console.log("heya", films, index, id);
-  
-    try {
-      console.log("shown");
-  
-      let movie = `
+  for (let r of films) {
+    if (id == r.id) {
+      index = r.num;
+    }
+  }
+
+  try {
+    let movie = `
       <div  class="movie">
           <h2>${films[index].title}</h2>
           <ul class="movieList">
@@ -40,8 +34,6 @@ function showMovie() {
           </div>
       </div>
       `;
-      document.getElementById("containerMain").innerHTML = movie;
-    } catch (e) {
-      console.log(e);
-    }
-  }
+    document.getElementById("containerMain").innerHTML = movie;
+  } catch (e) {}
+};

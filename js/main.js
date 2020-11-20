@@ -13,44 +13,28 @@ function fetchMovies() {
       let data = await response.json();
 
       //Storing in storage
-      console.log("Pehla deedar", data);
+     
       if (
         localStorage.getItem("movies") == null ||
         localStorage.getItem("movies") == undefined
       ) {
         let idMaker = 0;
-        localStorage.setItem('idGenerator',idMaker);
-        console.log("Does not exist, Hahaha I got in ehehehhe");
+        localStorage.setItem("idGenerator", idMaker);
+        
 
         storeMoviesInStorage(data);
-      } else {
-        console.log(
-          "I could not get in Noooooo, that Damn!!!! localStorage ahhhhhhhhhhh"
-        );
       }
-      generateTable();//Used to generate tables for the main Page....
+      generateTable(); //Used to generate tables for the main Page....
     })
-
     .catch((err) => {
       console.log(err);
     });
 }
-function generateTable() {
+generateTable = () => {
   let call = 0;
-  console.log("CalledTimes", ++call);
   let data = JSON.parse(localStorage.getItem("movies"));
-  console.log("CalledTimes", ++call, data);
   let num = 0;
-  let tab = `<tr> 
-          <th>#</th>
-          <th class="idCol">Id</th>
-          <th>Title</th> 
-          <th>Release Date</th>
-          <th>Director</th> 
-          <th>Producer</th> 
-          <th>RT</th> 
-          <th>Actions</th>
-         </tr>`;
+  let tab = ``;
 
   // Loop to access all rows
   for (let r of data) {
@@ -65,64 +49,59 @@ function generateTable() {
     <td class="actions">
         <button onclick="movieSelectedDetails('${r.id}')">Details</button>
         <button onclick="addMovie()">Add</button>
-        <button onclick=" movieSelectedEdit('${
-          r.id
-        }')" >Edit</button>
+        <button onclick=" movieSelectedEdit('${r.id}')" >Edit</button>
         <button onclick="removeMovie('${r.id}')">Remove</button>
     </td>           
     </tr>`;
   }
-  
+
   //StoringInStorage
 
   storeMoviesInStorage(data);
 
   // Setting innerHTML as tab variable
-  document.getElementById("moviesTable").innerHTML = tab;
-}
+  document.getElementById("moviesTable").innerHTML += tab;
+};
 
-function storeMoviesInStorage(data) {
+storeMoviesInStorage = (data) => {
   localStorage.clear();
   localStorage.setItem("movies", JSON.stringify(data));
-}
-function movieSelectedEdit(id) {
+};
+movieSelectedEdit = (id) => {
   localStorage.setItem("detailsMovie", id);
   window.location = "editAdd.html";
-  
+
   return false;
-}
-function movieSelectedDetails(id) {
+};
+movieSelectedDetails = (id) => {
   localStorage.setItem("detailsMovie", id);
   window.location = "details.html";
-  console.log("ID", id);
-  console.log("sessionStrorage", JSON.parse(localStorage.getItem("movies")));
   return false;
-}
+};
 
-function findIndex(films, id) {
+findIndex = (films, id) => {
   for (r of films) {
     if (r.id === id) {
-      console.log("Number", r.num);
       return r.num;
     }
   }
-}
+};
 
-function showMovie() {
+showMovie = () => {
   let index = null;
   films = JSON.parse(localStorage.getItem("movies"));
   id = localStorage.getItem("detailsMovie");
 
   index = films.map((a, id) => {
     if (id == a.id) {
-      return console.log("warr Jaa");
+      return 'Awesome';
     }
   });
 
-  console.log("heya", films, index, id);
+ 
 
   try {
-    console.log("shown");
+    
 
     let movie = `
     <div  class="movie">
@@ -144,33 +123,27 @@ function showMovie() {
     `;
     document.getElementById("containerMain").innerHTML = movie;
   } catch (e) {
-    console.log(e);
+    
   }
-}
+};
 
 //Add Movie
-function addMovie(){
-
-  localStorage.setItem('addMovie',true);
-  window.location = 'editAdd.html';
+addMovie = () => {
+  localStorage.setItem("addMovie", true);
+  window.location = "editAdd.html";
   return false;
-
-
-}
+};
 //RemoveMovie
 
-function removeMovie(id){
+removeMovie = (id) => {
+  let films = JSON.parse(localStorage.getItem("movies"));
+  let index = findIndex(films, id);
 
-  let films = JSON.parse(localStorage.getItem('movies'));
-  let index = findIndex(films,id);
-  
-  films.splice(index,1);
-  console.log(films);
-  localStorage.setItem('movies',JSON.stringify(films));
+  films.splice(index, 1);
+ 
+  localStorage.setItem("movies", JSON.stringify(films));
   generateTable();
-  
+
   return false;
   //Oi
-
-
-}
+};

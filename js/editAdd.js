@@ -1,11 +1,10 @@
 document.addEventListener("DOMContentLoaded", function (event) {
   // - Code to execute when all DOM content is loaded.
   // - including fonts, images, etc.
-  console.log(localStorage.getItem("addMovie"));
+  
   if (localStorage.getItem("addMovie") == "true") {
     addMovie();
   } else {
-      console.log('edit');
     editMovie();
   }
 });
@@ -17,10 +16,9 @@ function editMovie() {
 
   index = findIndex(films, id);
 
-  console.log("heya", films, index, id);
 
   try {
-    console.log("shown");
+    
 
     let movie = `
         <div  class="movie">
@@ -55,10 +53,10 @@ function editMovie() {
 }
 
 function findIndex(films, id) {
-  console.log(films);
+  
   for (r of films) {
     if (r.id === id) {
-      console.log("Number", r.num);
+      
       return r.num;
     }
   }
@@ -130,7 +128,7 @@ function saveNewMovie() {
   let descriptionN = document.getElementById("description").value;
   let rt_scoreN = document.getElementById("rtScore").value;
   let films = JSON.parse(localStorage.getItem("movies"));
-  console.log(titleN,directorN,producerN,releaseN,descriptionN);
+  
 
   let obj = {
       id: idGenerator(),
@@ -153,7 +151,7 @@ function idGenerator(){
 
     let idMaker = localStorage.getItem('idGenerator');
     localStorage.setItem('idGenerator',++idMaker);
-    console.log(idMaker);
+    
     return idMaker;
     
 
