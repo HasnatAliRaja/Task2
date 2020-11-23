@@ -165,6 +165,7 @@ paramExtractor = () => {
       let params = window.location.search.split("=");
 
       return params[1];
-     
+      
+    }
   }
 };
