@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 showMovie = () => {
   let index = null;
   films = JSON.parse(localStorage.getItem("movies"));
-  id = localStorage.getItem("detailsMovie");
+  id = paramExtractor(); //localStorage.getItem("detailsMovie");
 
   for (let r of films) {
     if (id == r.id) {
@@ -29,11 +29,23 @@ showMovie = () => {
               ${films[index].description}
               <hr>
               <div>
-                  <a href="index.html">Go Back</a>
+                  <button class="underButtons"><a href="index.html">Go Back</a></button>
               </div>
           </div>
       </div>
       `;
     document.getElementById("containerMain").innerHTML = movie;
   } catch (e) {}
+};
+
+paramExtractor = () => {
+  let queryString = new Array();
+  if (queryString.length == 0) {
+    if (window.location.search.split("?").length > 1) {
+      let params = window.location.search.split("=");
+
+      return params[1];
+      
+    }
+  }
 };

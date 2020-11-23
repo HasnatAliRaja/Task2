@@ -12,7 +12,7 @@
       <nav class="navBar">
         <div class="logo"><strong>Me&Movies</strong></div>
         <ul class="navList">
-          <li class="navBarLinks">Home</li>
+          <li class="navBarLinks"><a href="index.html">Home</a></li>
           <li class="navBarLinks">About Us</li>
           <li class="navBarLinks">Contac Us</li>
         </ul>
@@ -23,19 +23,22 @@
         <h1 class="headingH1">Movies</h1>
         <hr />
         <table id="moviesTable">
-          <tr> 
-            <th>#</th>
-            <th class="idCol">Id</th>
-            <th>Title</th> 
-            <th>Release Date</th>
-            <th>Director</th> 
-            <th>Producer</th> 
-            <th>RT</th> 
-            <th>Actions</th>
-           </tr>
+          <tbody>
+            <tr>
+              <th>#</th>
+              <th class="idCol">Id</th>
+              <th>Title</th>
+              <th>Release Date</th>
+              <th>Director</th>
+              <th>Producer</th>
+              <th>RT</th>
+              <th>Actions</th>
+            </tr>
+          </tbody>
+          <tbody id="populateTable"></tbody>
         </table>
+        
       </div>
     </main>
-    
   </body>
 </html>

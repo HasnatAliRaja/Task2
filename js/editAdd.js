@@ -12,10 +12,11 @@ document.addEventListener("DOMContentLoaded", function (event) {
 function editMovie() {
   let index = null;
   films = JSON.parse(localStorage.getItem("movies"));
-  id = localStorage.getItem("detailsMovie");
+  id = paramExtractor();
+  
 
   index = findIndex(films, id);
-
+  
 
   try {
     
@@ -23,12 +24,13 @@ function editMovie() {
     let movie = `
         <div  class="movie">
             <form class="editForm" >
-                <input id="title" value="${films[index].title}">
+                <h1>Title</h1>
+                <input id="title" value="${films[index].title}" maxlength='50'>
                 <ul class="movieList">
-                    <li><strong>Director: </strong><input id="director" value="${films[index].director}"></li>
-                    <li><strong>Producer: </strong><input id="producer" value="${films[index].producer}"></li>
-                    <li><strong>Release: </strong><input id="release" value="${films[index].release_date}"></li>
-                    <li><strong>Rt-Score: </strong><input id="rtScore" value="${films[index].rt_score}"></li>
+                    <li><strong>Director: </strong><input id="director" value="${films[index].director}" maxlength='50'></li>
+                    <li><strong>Producer: </strong><input id="producer" value="${films[index].producer}" maxlength='50'></li>
+                    <li><strong>Release: </strong><input id="release" value="${films[index].release_date}" max='2024'></li>
+                    <li><strong>Rt-Score: </strong><input id="rtScore" value="${films[index].rt_score}" max='100'></li>
                 </ul>
                 <div class="plotDv">
                     <h3>Plot</h3>
@@ -37,7 +39,7 @@ function editMovie() {
                     <div>
                        
                        <button type='button' value='submit' onclick="saveChanges(${index})">Save</button>
-                       <a href="index.html">Go Back</a>
+                       <button class="underButtons"><a href="index.html">Go Back</a></button>
                     </div>
                    
                 </div>
@@ -55,7 +57,7 @@ function editMovie() {
 function findIndex(films, id) {
   
   for (r of films) {
-    if (r.id === id) {
+    if (r.id == id) {
       
       return r.num;
     }
@@ -103,8 +105,8 @@ function addMovie() {
                     <hr>
                     <div>
                        
-                       <button type='button' value='submit' onclick="saveNewMovie()">Save</button>
-                       <a href="index.html">Go Back</a>
+                       <button class="underButtons" type='button' value='submit' onclick="saveNewMovie()">Save</button>
+                       <button class="underButtons"><a href="index.html">Go Back</a></button>
                     </div>
                    
                 </div>
@@ -156,3 +158,13 @@ function idGenerator(){
     
 
 }
+paramExtractor = () => {
+  let queryString = new Array();
+  if (queryString.length == 0) {
+    if (window.location.search.split("?").length > 1) {
+      let params = window.location.search.split("=");
+
+      return params[1];
+     
+  }
+};
